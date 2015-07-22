@@ -52,11 +52,11 @@ function Interne.redessine()
     term.write("x")
     term.setCursorPos(3,1)
     term.setTextColor(colors.lime)
-    term.write("qMedia V1.0.1")
+    term.write("qMedia v1.0.1")
     if Interne.page=="editProjet" then
         write(" - edition "..fs.getName(Interne.urlProjet))
     elseif Interne.page=="lancerProjet" then
-        write(" - lancement "..fs.getName(Interne.urlProjet))
+        write(" - lauching "..fs.getName(Interne.urlProjet))
     end
     if Interne.page~="accueil" then
         term.setCursorPos(x,1)
@@ -96,14 +96,14 @@ function Interne.boutonsBarre()
         event, para1, para2, para3=os.pullEvent()
         if event=="mouse_click" and para2==1 and para3==1 then
             if para1==2 then
-                info("pour quitter le programme")
+                info("to exit the program")
             else
                 continue=false
                 break
             end
         elseif event=="mouse_click" and para2==x and para3==1 and Interne.page~="accueil" then
             if para1==2 then
-                info("pour retourner à l'accueil")
+                info("to return to home")
             else
                 Interne.urlProjet=nil
                 Interne.page="accueil"
@@ -149,7 +149,7 @@ do
             term.write("Projet")
             term.setCursorPos(3,4)
             term.setTextColor(colors.gray)
-            term.write("Fichiers recent:")
+            term.write("Recent files:")
             sleep(0.1)
             for i,v in ipairs(projetsRecents) do
                 if i==projetSelect then
@@ -165,14 +165,14 @@ do
             if #projetsRecents==0 then
                 term.setTextColor(colors.red)
                 term.setCursorPos(3,5)
-                term.write("Aucun fichier")
+                term.write("No file")
             end
             term.setCursorPos(3,16)
             term.setTextColor(colors.gray)
             term.setBackgroundColor(colors.lightBlue)
-            term.write("Autre:")
-            Champs.ChampBouton("nouveauFichier",3,17,20).texte("nouveau projet").visible(true)
-            Champs.ChampBouton("ouvrirFichier",3,18,20).texte("ouvrir un projet").visible(true)
+            term.write("Other:")
+            Champs.ChampBouton("nouveauFichier",3,17,20).texte("New project").visible(true)
+            Champs.ChampBouton("ouvrirFichier",3,18,20).texte("Open the project").visible(true)
             term.setBackgroundColor(colors.cyan)
             for i=4,18 do
                 term.setCursorPos(29,i)
@@ -182,9 +182,9 @@ do
             term.setCursorPos(30,5)
             term.setTextColor(colors.blue)
             if not projetSelect then
-                term.write(" Selectionnez")
+                term.write(" Select")
                 term.setCursorPos(30,6)
-                term.write(" un projet")
+                term.write(" a project")
             else
                 local infosfs=ltpg.fsTraitementData(projetsRecents[projetSelect])
                 local function lectureFichier()
@@ -219,7 +219,7 @@ do
                     if infosfs.largeur==nil or infosfs.hauteur==nil then
                         return false
                     end
-                    term.write("ecran: "..infosfs.largeur.."*"..infosfs.hauteur)
+                    term.write("screen: "..infosfs.largeur.."*"..infosfs.hauteur)
                     term.setCursorPos(30,9)
                     if conteur>1 then
                         term.write(conteur.." scenes ")
@@ -235,9 +235,9 @@ do
                     end
                     term.setCursorPos(30,10)
                     if nbRes>1 then
-                        term.write(nbRes.." ressources")
+                        term.write(nbRes.." resources")
                     else
-                        term.write(nbRes.." ressource")
+                        term.write(nbRes.." resource")
                     end
                     return true
                 end
@@ -248,28 +248,28 @@ do
                     end
                     term.setCursorPos(30,5)
                     term.setTextColor(colors.red)
-                    term.write(" Fichier corrompu")
+                    term.write(" Corrupted file")
                     term.setCursorPos(29,7)
-                    term.write("il est impossible")
+                    term.write("it's impossible")
                     term.setCursorPos(29,8)
-                    term.write("de decoder le fichier")
+                    term.write("to decode")
                     term.setCursorPos(29,9)
-                    term.write("vous pouvez contacter")
+                    term.write("you can contact")
                     term.setCursorPos(29,10)
-                    term.write("le support ou Ded@le")
+                    term.write("the support or Ded@le")
                     term.setCursorPos(29,11)
-                    term.write("sur sa chaine")
+                    term.write("on GitHub")
                     term.setCursorPos(30,13)
-                    term.write("merci de votre")
+                    term.write("thanks for your")
                     term.setCursorPos(30,14)
-                    term.write("comprehention")
+                    term.write("comprehension")
                     projetSelect=nil
                 else                    
-                    Champs.ChampBouton("nouveauFichier",31,18,8).texte("Editer").visible(true)
+                    Champs.ChampBouton("nouveauFichier",31,18,8).texte("Edit").visible(true)
                     if conteur==0 then
-                        Champs.ChampBouton("nouveauFichier",40,18,8).texte("Rendu").statut(false).visible(true)
+                        Champs.ChampBouton("nouveauFichier",40,18,8).texte("Render").statut(false).visible(true)
                     else
-                        Champs.ChampBouton("nouveauFichier",40,18,8).texte("Rendu").visible(true)
+                        Champs.ChampBouton("nouveauFichier",40,18,8).texte("Render").visible(true)
                     end
                 end
             end
@@ -282,14 +282,14 @@ do
                 if event=="mouse_click" then
                     if para2>=3 and para2<=23 and para3==17 then
                         if para1==2 then
-                            info("pour cree une nouvelle scene")
+                            info("to create e new scene")
                         else
                             Interne.page="nouveau"
                             break
                         end
                     elseif projetSelect~=nil and para2>=31 and para2<=39 and para3==18 then
                         if para1==2 then
-                            info("pour modifier la scene selectionnée")
+                            info("to modif the selected scene")
                         else
                             Interne.urlProjet=projetsRecents[projetSelect]
                             table.remove(projetsRecents,projetSelect)
@@ -302,7 +302,7 @@ do
                         end
                     elseif projetSelect~=nil and para2>=40 and para2<=48 and para3==18 and conteur>0 then
                         if para1==2 then
-                            info("pour lancer le rendu d'un projet")
+                            info("to start selected project rendering")
                         else
                             Interne.urlProjet=projetsRecents[projetSelect]
                             table.remove(projetsRecents,projetSelect)
@@ -335,9 +335,9 @@ do
                         end
                     elseif para2>=3 and para2<=23 and para3==18 then
                         if para1==2 then
-                            info("pour ouvrir un projet existant")
+                            info("to open an existing project")
                         else
-                            local fichier=Champs.ChampTexte("ouverture",3,y-1,20).valueInfo("fichier:").visible(true).focus().valeur()
+                            local fichier=Champs.ChampTexte("ouverture",3,y-1,20).valueInfo("file:").visible(true).focus().valeur()
                             if fichier and fs.exists(fichier) then
                                 table.insert(projetsRecents,1,fichier)
                                 projetSelect=1
@@ -345,7 +345,7 @@ do
                                 resetDonneesScene()
                                 break
                             else
-                                Champs.alerte("Fichier inexistant")
+                                Champs.alerte("File doesn't exist")
                                 Interne.redessine()
                                 aff()
                             end
@@ -541,7 +541,7 @@ do
         
         local function fermetureProjet()
             if Interne.change then
-                if Champs.confirm("Enregistrer?") then
+                if Champs.confirm("Save?") then
                     ltpg.fsEnregistrementData(Interne.urlProjet,donnees)
                     Interne.change=false
                 end
@@ -634,17 +634,17 @@ do
                 term.write("s")
             end
             if selectScene==0 then
-                Champs.ChampBouton("",28,3,21).statut(false).texte("modifier").visible(true)
+                Champs.ChampBouton("",28,3,21).statut(false).texte("modif").visible(true)
             else
-                Champs.ChampBouton("",28,3,21).texte("modifier").visible(true)
+                Champs.ChampBouton("",28,3,21).texte("modif").visible(true)
             end
-            Champs.ChampBouton("",28,4,21).texte("resourses projet").visible(true)
+            Champs.ChampBouton("",28,4,21).texte("project resources").visible(true)
             if #scenes>0 then
-                Champs.ChampBouton("",28,5,21).texte("Rendu").visible(true)
+                Champs.ChampBouton("",28,5,21).texte("Rendering").visible(true)
             else
-                Champs.ChampBouton("",28,5,21).texte("Rendu  ").statut(false).visible(true)
+                Champs.ChampBouton("",28,5,21).texte("Rendering  ").statut(false).visible(true)
             end
-            Champs.ChampBouton("",28,6,21).texte("moniteur").visible(true)
+            Champs.ChampBouton("",28,6,21).texte("monitor").visible(true)
             term.setBackgroundColor(colors.cyan)
             for i=8,12 do
                 term.setCursorPos(28,i)
@@ -662,7 +662,7 @@ do
                 term.setCursorPos(30,15)
                 write("zoom: "..scenes[selectScene].zoom)
                 term.setCursorPos(39,15)
-                write("fond: ")
+                write("bColor: ")
                 term.setTextColor(tonumber(scenes[selectScene].fond))
                 write(scenes[selectScene].fond)
                 local conteur=0
@@ -674,12 +674,12 @@ do
                 if scenes[selectScene].frequence==nil then
                     scenes[selectScene].frequence=2
                 end
-                write("frequence: "..scenes[selectScene].frequence.."img/sec")
+                write("frequency: "..scenes[selectScene].frequence.."img/sec")
                 term.setCursorPos(30,17)
                 if scenes[selectScene].duree==nil then
                     scenes[selectScene].duree=10
                 end
-                write("duree: "..scenes[selectScene].duree.."sec")
+                write("duration: "..scenes[selectScene].duree.."sec")
                 term.setCursorPos(30,18)
                 write(conteur.." objet")
                 if conteur>1 then
@@ -695,16 +695,16 @@ do
             term.setCursorPos(30,10)
             term.write(fs.getSize(Interne.urlProjet).." bytes")
             term.setCursorPos(30,11)
-            term.write("ecran: "..donnees.largeur.."*"..donnees.hauteur)
+            term.write("monitor: "..donnees.largeur.."*"..donnees.hauteur)
             local nbRes=0
             for i,v in pairs(donnees.ressources) do
                 nbRes=nbRes+1
             end
             term.setCursorPos(30,12)
             if nbRes>1 then
-                term.write(nbRes.." ressources")
+                term.write(nbRes.." resources")
             else
-                term.write(nbRes.." ressource")
+                term.write(nbRes.." resource")
             end
         end
         local function renomme()
@@ -722,7 +722,7 @@ do
             elseif nouveauNom=="" then
                 
             else
-                Champs.alerte("nom incorrecte")
+                Champs.alerte("incorrect name")
             end
         end
         aff()
@@ -731,7 +731,7 @@ do
             if event=="mouse_click" and para2>=3 and para2<=23 and para3-2<=#scenes and para3>2 then
                 if para3-2==selectScene then
                     if para1==2 then
-                        info("modifier la scene")
+                        info("change the scene")
                     else
                         Interne.page="editScene"
                         Interne.scene=selectScene
@@ -743,7 +743,7 @@ do
                 aff()
             elseif event=="mouse_click" and para2==24 and para3==3 and selectScene~=0 and selectScene>1 then
                 if para1==2 then
-                    info("deplacer vers le haut la scene")
+                    info("move to the top of the scene")
                 else
                     local emplacement=scenes[selectScene-1]
                     scenes[selectScene-1]=scenes[selectScene]
@@ -755,7 +755,7 @@ do
                 aff()
             elseif event=="mouse_click" and para2==24 and para3==4 and selectScene~=0 and selectScene<#scenes then
                 if para1==2 then
-                    info("pour deplacer vers le bas la scene")
+                    info("move to the bottom of the scene")
                 else
                     local emplacement=scenes[selectScene+1]
                     scenes[selectScene+1]=scenes[selectScene]
@@ -767,9 +767,9 @@ do
                 aff()
             elseif event=="mouse_click" and para2==24 and para3==5 and selectScene~=0 and #scenes<15 then
                 if para1==2 then
-                    info("pour dupliquer la scene")
+                    info("to duplicate the scene")
                 else
-                    local nomCopie="copie de "..string.sub(scenes[selectScene].nom,1,9)
+                    local nomCopie=string.sub(scenes[selectScene].nom.."'s copy",1,9)
                     local fond=scenes[selectScene].fond
                     local objets=scenes[selectScene].objets
                     local zoom=scenes[selectScene].zoom
@@ -783,14 +783,14 @@ do
                 aff()
             elseif event=="mouse_click" and para2==24 and para3==6 and selectScene~=0 then
                 if para1==2 then
-                    info("pour renommer la scene")
+                    info("to rename the scene")
                 else
                     renomme()
                 end
                 aff()
             elseif event=="mouse_click" and para2==24 and para3==7 and #scenes<15 and selectScene~=0 then
                 if para1==2 then
-                    info("pour supprimer la scene")
+                    info("to delete the scene")
                 else
                     table.remove(scenes,selectScene)
                     if selectScene>=#scenes then
@@ -802,9 +802,9 @@ do
                 aff()
             elseif event=="mouse_click" and para2==24 and para3==8 and #scenes<15 then
                 if para1==2 then
-                    info("pour cree une nouvelle scene")
+                    info("to create a new scene")
                 else
-                    table.insert(scenes,{nom="nouvelle scene",zoom=1,fond=32768,duree=10,frequence=2,objets={}})
+                    table.insert(scenes,{nom="new scene",zoom=1,fond=32768,duree=10,frequence=2,objets={}})
                     selectScene=#scenes
                     aff()
                     renomme()
@@ -814,7 +814,7 @@ do
                 aff()
             elseif event=="mouse_click" and para2>=28 and para2<=49 and para3==3 and selectScene~=0 then
                 if para1==2 then
-                    info("Modifier la scene selectionnee")
+                    info("edit the selected scene")
                 else
                     Interne.page="editScene"
                     Interne.scene=selectScene
@@ -823,7 +823,7 @@ do
                 aff()
             elseif event=="mouse_click" and para2>=28 and para2<=49 and para3==4 then
                 if para1==2 then
-                    info("Editer les ressources du projet")
+                    info("edit the project resources")
                 else
                     Interne.page="resourcesProjet"
                     break
@@ -831,10 +831,10 @@ do
                 aff()
             elseif event=="mouse_click" and para2>=28 and para2<=49 and para3==5 then
                 if para1==2 then
-                    info("Voir un rendu du projet")
+                    info("See a rendering of the project")
                 else
                     if Interne.change then
-                        if Champs.confirm("Enregistrer?") then
+                        if Champs.confirm("Save?") then
                             ltpg.fsEnregistrementData(Interne.urlProjet,donnees)
                             Interne.change=false
                         end
@@ -845,14 +845,14 @@ do
                 aff()
             elseif event=="mouse_click" and para2>=28 and para2<=49 and para3==6 then
                 if para1==2 then
-                    info("Choisir le moniteur de test")
+                    info("chose the test monitor")
                 else
                     choixMoniteur()
                 end
                 aff()
             elseif event=="mouse_click" and para2==1 and para3==1 then
                 if para1==2 then
-                    info("pour quitter le programme")
+                    info("exit the program")
                 else
                     fermetureProjet()
                     continue=false
@@ -861,7 +861,7 @@ do
                 aff()
             elseif event=="mouse_click" and para2==x and para3==1 and Interne.page~="accueil" then
                 if para1==2 then
-                    info("pour retourner à l'accueil")
+                    info("to return to home")
                 else
                     fermetureProjet()
                     Interne.page="accueil"
@@ -878,7 +878,7 @@ do
             }?>
             elseif event=="mouse_click" and Interne.change and para2==x-1 and para3==1 then
                 if para1==2 then
-                    info("pour enregistrer les modifications")
+                    info("to save the modifications")
                     aff()
                 else
                     ltpg.fsEnregistrementData(Interne.urlProjet,donnees)
@@ -901,7 +901,7 @@ do
             premier=1
             local function fermetureProjet()
                 if Interne.change then
-                    if Champs.confirm("Enregistrer?") then
+                    if Champs.confirm("Save?") then
                         ltpg.fsEnregistrementData(Interne.urlProjet,donnees)
                         Interne.change=false
                     end
@@ -915,10 +915,10 @@ do
                 term.setCursorPos(2,2)
                 term.setTextColor(colors.gray)
                 term.setBackgroundColor(colors.lightBlue)
-                write("<- retout")
+                write("<- back")
                 term.setCursorPos((x-10)/2,2)
                 term.setTextColor(colors.blue)
-                write("Ressources ("..#ressources..")")
+                write("Resources ("..#ressources..")")
                 term.setCursorPos(x-2-5,2)
                 if resSelectionnee>0 then
                     term.setBackgroundColor(colors.lightGray)
@@ -957,7 +957,7 @@ do
                 term.write(string.rep(" ",x-4))
                 term.setCursorPos(2,4)
                 term.setTextColor(colors.black)
-                term.write("nm nom        type infos")
+                term.write("nm name       type infos")
                 term.setCursorPos(1,5)
                 term.setTextColor(colors.gray)
                 for i=0,14 do
@@ -979,7 +979,7 @@ do
                     if ressources[i+premier].type=="img" and ressources[i+premier].fond~=nil then
                         write("img")
                         term.setCursorPos(21,i+5)
-                        write("fond:")
+                        write("background:")
                         if ressources[i+premier].fond~=0 then
                             term.setTextColor(ressources[i+premier].fond)
                             write(ressources[i+premier].fond.." ")
@@ -991,7 +991,7 @@ do
                         else
                             write("_")
                         end
-                        write("taille:"..ressources[i+premier].x.."x"..ressources[i+premier].y)
+                        write("size:"..ressources[i+premier].x.."x"..ressources[i+premier].y)
                     elseif ressources[i+premier].type=="prg" then
                         write("prg")
                         term.setCursorPos(21,i+5)
@@ -1031,7 +1031,7 @@ do
                 elseif nouveauNom=="" then
                     
                 else
-                    Champs.alerte("nom incorrecte")
+                    Champs.alerte("incorrect name")
                 end
             end
             while true do
@@ -1056,7 +1056,7 @@ do
                     end
                 elseif event=="mouse_click" and para2>=2 and para2<=10 and para3==2 then
                     if para1==2 then
-                        info("retourner a la gestion de projet")
+                        info("return to project management")
                     else
                         Interne.page="editProjet"
                         break
@@ -1068,26 +1068,26 @@ do
                 elseif event=="mouse_click" and para2>=2 and para2<=x-3 and para3>=5 and para3<=25 and para3-4+premier<=#ressources+1 then
                     if resSelectionnee==para3-5+premier and para2>=5 and para2<=15 then
                         if para1==2 then
-                            info("renommer une ressource")
+                            info("rename a resource")
                         else
                             renomme()
                         end
                     else
                         if para1==2 then
-                            info("selectionner une ressource")
+                            info("select a resource")
                         else
                             resSelectionnee=para3-5+premier
                         end
                     end
                 elseif event=="mouse_click" and para2==x-2 and para3==2 then
                     if para1==2 then
-                        info("Importer une ressource")
+                        info("Import a resource")
                     else
-                        erreur("pas encore implemente")
+                        erreur("not yet implemented :(")
                     end
                 elseif event=="mouse_click" and para2==x-7 and para3==2 and resSelectionnee>0 then
                     if para1==2 then
-                        info("Editer la ressource")
+                        info("Edit resource")
                     else
                         if ressources[resSelectionnee].type=="prg" then
                             local fichier=fs.open("edition.programme","w")
@@ -1113,13 +1113,13 @@ do
                     end
                 elseif event=="mouse_click" and para2==x-6 and para3==2 and resSelectionnee>0 then
                     if para1==2 then
-                        info("renommer la ressource")
+                        info("rename the resource")
                     else
                         renomme()
                     end
                 elseif event=="mouse_click" and para2==x-5 and para3==2 and resSelectionnee>0 then
                     if para1==2 then
-                        info("Dupliquer la ressource")
+                        info("Duplicate the resource")
                     else
                         local nouveau={}
                         nouveau.nom="2"..ressources[resSelectionnee].nom
@@ -1136,7 +1136,7 @@ do
                     end
                 elseif event=="mouse_click" and para2==x-4 and para3==2 and resSelectionnee>0 then
                     if para1==2 then
-                        info("supprimer la ressource")
+                        info("delete the resource")
                     else
                         table.remove(ressources,resSelectionnee)
                         Interne.change=true
@@ -1144,7 +1144,7 @@ do
                     end
                 elseif event=="mouse_click" and para2==x-3 and para3==2 then
                     if para1==2 then
-                        info("ajouter une ressource")
+                        info("add a resource")
                     else
                         do
                             local nom
@@ -1162,16 +1162,16 @@ do
                                 fenettre.clearLine()
                                 fenettre.setCursorPos(22,1)
                                 fenettre.setTextColor(colors.lightGray)
-                                fenettre.write("Nouvelle Ressource")
+                                fenettre.write("New Ressource")
                                 fenettre.setCursorPos(22,1)
                                 fenettre.setTextColor(colors.red)
                                 fenettre.write("x")
-                                Champs.ChampBouton("",3,13,18,fenettre).texte("valider").visible(true)
+                                Champs.ChampBouton("",3,13,18,fenettre).texte("validate").visible(true)
                                 if type=="img" then
                                     if fond==nil then
-                                        fond=Champs.ChampTexte("",3,7,18,fenettre).valueInfo("fond:").visible(true)
-                                        largeur=Champs.ChampTexte("",3,9,18,fenettre).valueInfo("largeur:").visible(true)
-                                        hauteur=Champs.ChampTexte("",3,11,18,fenettre).valueInfo("hauteur:").visible(true)
+                                        fond=Champs.ChampTexte("",3,7,18,fenettre).valueInfo("bColor:").visible(true)
+                                        largeur=Champs.ChampTexte("",3,9,18,fenettre).valueInfo("width:").visible(true)
+                                        hauteur=Champs.ChampTexte("",3,11,18,fenettre).valueInfo("heignt:").visible(true)
                                     else
                                         fond.redessine()
                                         largeur.redessine()
@@ -1179,7 +1179,7 @@ do
                                     end
                                 end
                                 if nom==nil then
-                                    nom=Champs.ChampTexte("",3,3,18,fenettre).valueInfo("nom:").visible(true)
+                                    nom=Champs.ChampTexte("",3,3,18,fenettre).valueInfo("nome:").visible(true)
                                 else
                                     nom.redessine()
                                 end
@@ -1214,7 +1214,7 @@ do
                                 elseif event=="mouse_click" and para2>=math.floor((x-22)/2)+3 and para2<=math.floor((x-22)/2)+18 then
                                     if para3==13+3 then
                                         if string.len(nom.valeur())<3 then
-                                            erreur("le nom doit fair min 3chars")
+                                            erreur("the name must be min 3chars")
                                         else
                                             if type=="prg" then
                                                 table.insert(ressources,{nom=nom.valeur(),contenu="--contenu",type="prg"})
@@ -1258,14 +1258,14 @@ do
                     end
                 elseif Interne.change and para2==x-1 and para3==1 then
                     if para1==2 then
-                        info("pour enregistrer les modifications")
+                        info("to save the changes")
                     else
                         ltpg.fsEnregistrementData(Interne.urlProjet,donnees)
                         Interne.change=false
                     end
                 elseif para2==x and para3==1 then
                     if para1==2 then
-                        info("pour retourner à l'accueil")
+                        info("to return to home")
                     else
                         fermetureProjet()
                         Interne.page="accueil"
@@ -1281,7 +1281,7 @@ do
                 }?>
                 elseif event=="mouse_click" and para2==1 and para3==1 then
                     if para1==2 then
-                        info("pour quitter le programme")
+                        info("to exit the program")
                     else
                         fermetureProjet()
                         Interne.page="accueil"
@@ -1319,7 +1319,7 @@ do
             if type(nouveauObjet.type)~="string" then
                 return false
             end
-            nouveauObjet.nom="nouvel objet"
+            nouveauObjet.nom="new object"
             for i,v in pairs(effets[nouveauObjet.type].parametres) do
                 nouveauObjet[v.nom]=v.defaut
             end
@@ -1358,13 +1358,13 @@ do
             fenettre.clear()
             fenettre.setTextColor(colors.gray)
             fenettre.setCursorPos(2,3)
-            fenettre.write("Couleur Fond:")
+            fenettre.write("Background color:")
             fenettre.setCursorPos(2,4)
             fenettre.write("Zoom [0.5-5]:")
             fenettre.setCursorPos(3,5)
-            fenettre.write("duree (sec):")
+            fenettre.write("duration (sec):")
             fenettre.setCursorPos(5,6)
-            fenettre.write("Frequence:")
+            fenettre.write("Frequency:")
             fenettre.setCursorPos(5,7)
             fenettre.write("(img/sec)")
             
@@ -1373,7 +1373,7 @@ do
             fenettre.clearLine()
             fenettre.setCursorPos(2,1)
             fenettre.setTextColor(colors.lightGray)
-            fenettre.write("parametres scene")
+            fenettre.write("scene settings")
             fenettre.setCursorPos(30,1)
             fenettre.setTextColor(colors.red)
             fenettre.write("x")
@@ -1419,15 +1419,15 @@ do
             Interne.redessine()
             term.setCursorPos((x-12)/2,2)
             term.setTextColor(colors.blue)
-            term.write("edition Scene (")
+            term.write("Scene edition(")
             write(#objets)
             write(")")
             term.setCursorPos(2,2)
             term.setTextColor(colors.gray)
             term.setBackgroundColor(colors.lightBlue)
-            write("<- retout")
+            write("<- back")
             term.setCursorPos(x-10,2)   
-            write("parametres")
+            write("parameters")
             term.setCursorPos(2,3)
             term.setBackgroundColor(colors.gray)
             term.write(string.rep(" ",20))
@@ -1522,7 +1522,7 @@ do
             term.setCursorPos(x-25,3)
             term.write(string.rep(" ",25))
             term.setCursorPos(x-24,3)   
-            write("Temps")
+            write("Time")
             term.setBackgroundColor(colors.white)
             term.setCursorPos(x-25,4)
             term.write(string.rep(" ",25))
@@ -1559,7 +1559,7 @@ do
             term.write(string.rep(" ",25))
             term.setTextColor(colors.black)
             term.setCursorPos(x-24,6)   
-            write("parametres")
+            write("parameters")
             if selectObjet>0 and effets[objets[selectObjet].type]~=nil then
                 term.setBackgroundColor(colors.white)
                 listePara=effets[objets[selectObjet].type].parametres
@@ -1584,7 +1584,7 @@ do
                                     write(donnees.ressources[objets[selectObjet][v.nom]].nom)
                                 end
                             else
-                                write("[selectionne]")
+                                write("[selected]")
                             end
                             term.setTextColor(colors.blue)
                             term.setBackgroundColor(colors.lightGray)
@@ -1635,7 +1635,7 @@ do
                     else
                         term.setTextColor(colors.red)
                         write("erreur")
-                        erreur("fichier corrompu!")
+                        erreur("corrupted file!")
                     end
                 end
             end
@@ -1655,7 +1655,7 @@ do
         end
         local function fermetureProjet()
             if Interne.change then
-                if Champs.confirm("Enregistrer?") then
+                if Champs.confirm("Save?") then
                     ltpg.fsEnregistrementData(Interne.urlProjet,donnees)
                     Interne.change=false
                 end
@@ -1689,7 +1689,7 @@ do
                                     numActuel=#res
                                 end
                             end
-                            local num=Champs.choix(res,"Choisir une ressource",numActuel)
+                            local num=Champs.choix(res,"Select a resource",numActuel)
                             if num then
                                 objets[selectObjet][listePara[para3-7].nom]=images[num]
                                 change()
@@ -1704,7 +1704,7 @@ do
                                         table.insert(res,v.nom)
                                     end
                                 end
-                                local retour=Champs.choixOrdonne(res,"Choisir une ressource",objets[selectObjet][listePara[para3-7].nom])
+                                local retour=Champs.choixOrdonne(res,"Select a resource",objets[selectObjet][listePara[para3-7].nom])
                                 if retour then
                                     local numImages={}
                                     for i,v in pairs(retour) do
@@ -1722,14 +1722,14 @@ do
                         end
                     elseif listePara[para3-7].type=="texte" then
                         play=false
-                        local retour=Champs.prompt("texte:",objets[selectObjet][listePara[para3-7].nom],40)
+                        local retour=Champs.prompt("text:",objets[selectObjet][listePara[para3-7].nom],40)
                         if string.len(retour)>0 then
                             objets[selectObjet][listePara[para3-7].nom]=retour
                             change()
                         end
                     elseif listePara[para3-7].type=="couleur" then
                         play=false
-                        local retour=Champs.couleur("couleur",tonumber(objets[selectObjet][listePara[para3-7].nom]))
+                        local retour=Champs.couleur("color",tonumber(objets[selectObjet][listePara[para3-7].nom]))
                         if retour then
                             objets[selectObjet][listePara[para3-7].nom]=retour
                             change()
@@ -1754,7 +1754,7 @@ do
                 end    
                 if event=="mouse_click" and para2>=2 and para2<=10 and para3==2 then
                     if para1==2 then
-                        info("retourner a la gestion de projet")
+                        info("return to project management")
                         aff()
                     else
                         Interne.page="editProjet"
@@ -1762,7 +1762,7 @@ do
                     end
                 elseif event=="mouse_click" and para2>=x-10 and para2<=x-2 and para3==2 then
                     if para1==2 then
-                        info("Editer les parametres de la scene")
+                        info("Edit the parameters of the scene")
                         aff()
                     else
                         if editeParaScene() then
@@ -1773,7 +1773,7 @@ do
                     end
                 elseif event=="mouse_click" and para2>=2 and para2<=21 and para3-3<=#objets and para3>3 then
                     if para1==2 then
-                        info("selectionner un objet")
+                        info("select an objet")
                         aff()
                     else
                         selectObjet=para3-3
@@ -1782,7 +1782,7 @@ do
                     end
                 elseif event=="mouse_click" and Interne.change and para2==x-1 and para3==1 then
                     if para1==2 then
-                        info("pour enregistrer les modifications")
+                        info("save modifications")
                         aff()
                     else
                         ltpg.fsEnregistrementData(Interne.urlProjet,donnees)
@@ -1791,7 +1791,7 @@ do
                     end
                 elseif event=="mouse_click" and para2==x and para3==1 then
                     if para1==2 then
-                        info("pour retourner à l'accueil")
+                        info("back to the home")
                         aff()
                     else
                         fermetureProjet()
@@ -1800,7 +1800,7 @@ do
                     end
                 elseif event=="mouse_click" and selectObjet>0 and para2==23 and para3==3 and selectObjet>1 then
                     if para1==2 then
-                        info("monter l'objet")
+                        info("show the objet")
                         aff()
                     else
                         local donnees={}
@@ -1814,7 +1814,7 @@ do
                     end
                 elseif event=="mouse_click" and selectObjet>0 and para2==23 and para3==4 and selectObjet<#objets then
                     if para1==2 then
-                        info("descendre l'objet")
+                        info("get down the objet")
                         aff()
                     else
                         local donnees={}
@@ -1828,7 +1828,7 @@ do
                     end
                 elseif event=="mouse_click" and selectObjet>0 and para2==23 and para3==5 then
                     if para1==2 then
-                        info("dupliquer l'Objet")
+                        info("duplicate the objet")
                         aff()
                     else
                         local nouvelObjet={}
@@ -1843,15 +1843,15 @@ do
                     end
                 elseif event=="mouse_click" and selectObjet>0 and para2==23 and para3==6 then
                     if para1==2 then
-                        info("Renommer l'objet")
+                        info("rename the objet")
                         aff()
                     else
-                        objets[selectObjet].nom=Champs.prompt("Nom:",objets[selectObjet].nom)
+                        objets[selectObjet].nom=Champs.prompt("Name:",objets[selectObjet].nom)
                         change()
                     end
                 elseif event=="mouse_click" and para2==23 and para3==7 and selectObjet>0 then
                     if para1==2 then
-                        info("supprimer L'objet selectionne")
+                        info("Delete the selected object")
                         aff()
                     else
                         table.remove(objets,selectObjet)
@@ -1863,7 +1863,7 @@ do
                     end
                 elseif event=="mouse_click" and para2==23 and para3==8 then
                     if para1==2 then
-                        info("Nouvel objet")
+                        info("New objet")
                         aff()
                     else
                         nouveauObjet()
@@ -1873,7 +1873,7 @@ do
                     end
                 elseif event=="mouse_click" and para2==23 and para3==10 then
                     if para1==2 then
-                        info("Apercu de tout les objets")
+                        info("Overview of all objects")
                     elseif modeAffichage~=1 then
                         modeAffichage=1
                         ActualiseMoniteur()
@@ -1881,7 +1881,7 @@ do
                     aff()
                 elseif event=="mouse_click" and para2==23 and para3==11 then
                     if para1==2 then
-                        info("Apercu de l'objet select")
+                        info("Overview of the selected object")
                     elseif modeAffichage~=2 then
                         modeAffichage=2
                         ActualiseMoniteur()
@@ -1889,21 +1889,21 @@ do
                     aff()
                 elseif event=="mouse_click" and para2==x-22 and para3==4 then
                     if play==true or para1==2 or modeAffichage==2 then
-                        info("Jouer la scene")
+                        info("Play the scene")
                     else
                         play=true
                     end
                     aff()
                 elseif event=="mouse_click" and para2==x-21 and para3==4 then
                     if play==false or para1==2 or modeAffichage==2 then
-                        info("mettre en pause la scene")
+                        info("pause the scene")
                     else
                         play=false
                     end
                     aff()
                 elseif event=="mouse_click" and para2==x-20 and para3==4 then
                     if para1==2 then
-                        info("jouer la scene au debut")
+                        info("play the scene to the start")
                     elseif modeAffichage~=2 then
                         tour=1
                         ActualiseMoniteur()
@@ -1911,7 +1911,7 @@ do
                     aff()
                 elseif event=="mouse_click" and para2==x-19 and para3==4 then
                     if para1==2 then
-                        info("reculer le temps")
+                        info("back the time")
                     elseif modeAffichage~=2 then
                         tour=tour-1/tonumber(donnees.scenes[Interne.scene].frequence)
                         if tour<=0 then
@@ -1922,7 +1922,7 @@ do
                     aff()
                 elseif event=="mouse_click" and para2==x-3 and para3==4 then
                     if para1==2 then
-                        info("Avancer le temps")
+                        info("up the time")
                     elseif modeAffichage~=2 then
                         tour=tour+1/tonumber(donnees.scenes[Interne.scene].frequence)
                         if tonumber(donnees.scenes[Interne.scene].duree)<=tour then
@@ -1941,7 +1941,7 @@ do
                 }?>
                 elseif event=="mouse_click" and para2==1 and para3==1 then
                     if para1==2 then
-                        info("pour quitter le programme")
+                        info("exit the program")
                         aff()
                     else
                         fermetureProjet()
@@ -1992,7 +1992,7 @@ do
                 pjdef=true
             end
         end
-        local infos={"chargement..."}
+        local infos={"loading..."}
         local function affInfos()
             term.setBackgroundColor(colors.white)
             term.setTextColor(colors.black)
@@ -2074,7 +2074,7 @@ do
             term.setTextColor(colors.gray)
             term.setBackgroundColor(colors.lightBlue)
             term.setCursorPos(4,2)
-            write("scenes")
+            write("scens")
             term.setCursorPos(29,6)
             write("infos")
             term.setCursorPos(11,2)
@@ -2085,9 +2085,9 @@ do
             else
                 write("("..#donnees.scenes..") ")
             end
-            Champs.ChampBouton("",28,3,21).texte("edition projet").visible(true)
-            Champs.ChampBouton("",28,4,21).texte("moniteurs").visible(true)
-            Champs.ChampCoche("",28,14).description("projet par defaut").couleurFond(colors.lightBlue).etat(pjdef).visible(true)
+            Champs.ChampBouton("",28,3,21).texte("project edition").visible(true)
+            Champs.ChampBouton("",28,4,21).texte("monitors").visible(true)
+            Champs.ChampCoche("",28,14).description("default project").couleurFond(colors.lightBlue).etat(pjdef).visible(true)
             for i,v in pairs(donnees.scenes) do
                 if selectScene==i then
                     term.setCursorPos(2,i+2)
@@ -2257,7 +2257,7 @@ do
                 }?>
                 elseif event=="mouse_click" and para2==x and para3==1 then
                     if para1==2 then
-                        info("pour retourner à l'accueil")
+                        info("back to the home")
                         aff()
                     else
                         Interne.page="accueil"
@@ -2265,7 +2265,7 @@ do
                     end
                 elseif event=="mouse_click" and para2==1 and para3==1 then
                     if para1==2 then
-                        info("pour quitter le programme")
+                        info("exit the program")
                         aff()
                     else
                         Interne.page="accueil"
@@ -2289,7 +2289,7 @@ do
         Interne.redessine()
         term.setCursorPos((x-6)/2,3)
         term.setTextColor(colors.blue)
-        term.write("Nouveau")
+        term.write("New")
         
         local continuer=true
         local function quandModifie()
@@ -2305,10 +2305,10 @@ do
             end
         end
         ChampUrl=Champs.ChampTexte("url",3,5,21).valueInfo("Url:").visible(true).quandModifie(quandModifie).quandFini(quandFini)
-        ChampLargeur=Champs.ChampTexte("largeur",3,7,10).valueInfo("Largeur:").visible(true).quandModifie(quandModifie).quandFini(quandFini)
-        ChampHauteur=Champs.ChampTexte("hauteur",14,7,10).valueInfo("Hauteur:").visible(true).quandModifie(quandModifie).quandFini(quandFini)
-        ChampAnnuler=Champs.ChampBouton("annuler",3,9,10).texte("annuler").visible(true).quandValide(function() continuer=false end)
-        ChampValider=Champs.ChampBouton("valider",14,9,10).texte("valider").statut(false).visible(true).quandValide(function()
+        ChampLargeur=Champs.ChampTexte("largeur",3,7,10).valueInfo("Width:").visible(true).quandModifie(quandModifie).quandFini(quandFini)
+        ChampHauteur=Champs.ChampTexte("hauteur",14,7,10).valueInfo("height:").visible(true).quandModifie(quandModifie).quandFini(quandFini)
+        ChampAnnuler=Champs.ChampBouton("annuler",3,9,10).texte("cancel").visible(true).quandValide(function() continuer=false end)
+        ChampValider=Champs.ChampBouton("valider",14,9,10).texte("validate").statut(false).visible(true).quandValide(function()
             local donnees={}
             donnees.enTete="Fichier Projet fluomort"
             donnees.id=os.getComputerID()

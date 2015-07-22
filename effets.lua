@@ -125,7 +125,7 @@ end
 effets.texteMouv.infos="texte defilant"
 
 effets.texteClini={}
-effets.texteClini.parametres={{type="couleur",info="couleurT:",nom="couleur",defaut=1},{type="couleur",info="couleurF:",nom="fond",defaut=1},{type="texte",info="texte:",nom="texte",defaut=""},{type="numeric",info="posx:",nom="x",defaut=1},{nom="y",info="posy:",type="numeric",defaut=1},{type="numeric",info="vitesse:",nom="vitesse",defaut=1}}
+effets.texteClini.parametres={{type="couleur",info="tColor:",nom="color",defaut=1},{type="couleur",info="bColor:",nom="background",defaut=1},{type="texte",info="text:",nom="text",defaut=""},{type="numeric",info="xpos:",nom="x",defaut=1},{nom="y",info="ypos:",type="numeric",defaut=1},{type="numeric",info="speed:",nom="speed",defaut=1}}
 function effets.texteClini.dessine(_,contenu,moniteur,tour)
     local couleurs={c0=1,c1=2,c2=4,c3=8,c4=16,c5=32,c6=64,c7=128,c8=256,c9=512,ca=1024,cb=2048,cc=4096,cd=8192,ce=16384,cf=32768}
     local ecran=peripheral.wrap(moniteur)
