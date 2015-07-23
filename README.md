@@ -1,6 +1,7 @@
 # qMedia
 ![qMedia in action](http://qos.esy.es/images/qMediaMin.gif)
-qMedia is a ComputerCraft Program useful to create animations (like Powerpoint) on terminals.
+
+→ qMedia is a ComputerCraft Program useful to create animations (like Powerpoint) on terminals.
 
 To see the program in operation, watch https://www.youtube.com/watch?v=8VKkDig_N5E.
 qMedia is made in French for now, but I have the project of translating it.
@@ -30,4 +31,4 @@ Launchers' versions are :
  * http://pastebin.com/mFEteE00 (En)
  * http://pastebin.com/LDyDQdcn (Fr)
 
-#### Thinks testing my program ;-)
+#### Thinks testing my program ! :yum:
