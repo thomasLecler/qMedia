@@ -1,7 +1,7 @@
 effets={}
 effets.image={}
-effets.image.parametres={{type="image",info="image:",nom="image",defaut=""},{type="numeric",info="posx:",nom="x",defaut=1},{nom="y",info="posy:",type="numeric",defaut=1}}
-effets.image.infos="Image fixe"
+effets.image.parametres={{type="image",info="image:",nom="image",defaut=""},{type="numeric",info="Xpos:",nom="x",defaut=1},{nom="y",info="Ypos:",type="numeric",defaut=1}}
+effets.image.infos="Fixed image"
 function effets.image.dessine(donnees,contenu,moniteur,_)
     if contenu.image=="" then
         return
@@ -32,8 +32,8 @@ function effets.image.dessine(donnees,contenu,moniteur,_)
 end
 
 effets.imageAnnim={}
-effets.imageAnnim.parametres={{type="liste",liste="images",info="images:",nom="images",defaut={}},{type="numeric",info="posx:",nom="x",defaut=1},{nom="y",info="posy:",type="numeric",defaut=1}}
-effets.imageAnnim.infos="Images annimees"
+effets.imageAnnim.parametres={{type="liste",liste="images",info="images:",nom="images",defaut={}},{type="numeric",info="Xpos:",nom="x",defaut=1},{nom="y",info="Ypos:",type="numeric",defaut=1}}
+effets.imageAnnim.infos="Moving pictures"
 function effets.imageAnnim.dessine(donnees,contenu,moniteur,tour)
     if #contenu.images<1 then
         return
@@ -74,7 +74,7 @@ function effets.imageAnnim.dessine(donnees,contenu,moniteur,tour)
 end
 
 effets.texte={}
-effets.texte.parametres={{type="couleur",info="couleurT:",nom="couleur",defaut=1},{type="couleur",info="couleurF:",nom="fond",defaut=1},{type="texte",info="texte:",nom="texte",defaut=""},{type="numeric",info="posx:",nom="x",defaut=1},{nom="y",info="posy:",type="numeric",defaut=1}}
+effets.texte.parametres={{type="couleur",info="Tcolor:",nom="couleur",defaut=1},{type="couleur",info="Bcolor:",nom="fond",defaut=1},{type="texte",info="text:",nom="texte",defaut=""},{type="numeric",info="Xpos:",nom="x",defaut=1},{nom="y",info="Ypos:",type="numeric",defaut=1}}
 function effets.texte.dessine(_,contenu,moniteur,_)
     local couleurs={c0=1,c1=2,c2=4,c3=8,c4=16,c5=32,c6=64,c7=128,c8=256,c9=512,ca=1024,cb=2048,cc=4096,cd=8192,ce=16384,cf=32768}
     local ecran=peripheral.wrap(moniteur)
@@ -88,7 +88,7 @@ end
 effets.texte.infos="texte fixe"
 
 effets.texteMouv={}
-effets.texteMouv.parametres={{type="couleur",info="couleurT:",nom="couleur",defaut=1},{type="couleur",info="couleurF:",nom="fond",defaut=1},{type="texte",info="texte:",nom="texte",defaut=""},{type="numeric",info="posx:",nom="x",defaut=1},{nom="y",info="posy:",type="numeric",defaut=1},{type="numeric",info="largeur:",nom="largeur",defaut=5},{nom="vitesse",info="vitesse:",type="texte",defaut=1},{type="boolean",info="sensInv:",nom="sensInv",defaut=1}}
+effets.texteMouv.parametres={{type="couleur",info="Tcolor:",nom="couleur",defaut=1},{type="couleur",info="Bcolor:",nom="fond",defaut=1},{type="texte",info="text:",nom="texte",defaut=""},{type="numeric",info="Xpos:",nom="x",defaut=1},{nom="y",info="Ypos:",type="numeric",defaut=1},{type="numeric",info="width:",nom="largeur",defaut=5},{nom="vitesse",info="speed:",type="texte",defaut=1},{type="boolean",info="oppDirec:",nom="sensInv",defaut=1}}
 function effets.texteMouv.dessine(_,contenu,moniteur,tour)
     local ecran=peripheral.wrap(moniteur)
     if contenu.vitesse==nil or contenu.vitesse=="" then contenu.vitesse=1 end
@@ -122,9 +122,9 @@ function effets.texteMouv.dessine(_,contenu,moniteur,tour)
         end
     end
 end
-effets.texteMouv.infos="texte defilant"
+effets.texteMouv.infos="scrolling text"
 
-effets.texteClini={}
+--[[effets.texteClini={}
 effets.texteClini.parametres={{type="couleur",info="tColor:",nom="color",defaut=1},{type="couleur",info="bColor:",nom="background",defaut=1},{type="texte",info="text:",nom="text",defaut=""},{type="numeric",info="xpos:",nom="x",defaut=1},{nom="y",info="ypos:",type="numeric",defaut=1},{type="numeric",info="speed:",nom="speed",defaut=1}}
 function effets.texteClini.dessine(_,contenu,moniteur,tour)
     local couleurs={c0=1,c1=2,c2=4,c3=8,c4=16,c5=32,c6=64,c7=128,c8=256,c9=512,ca=1024,cb=2048,cc=4096,cd=8192,ce=16384,cf=32768}
@@ -136,10 +136,10 @@ function effets.texteClini.dessine(_,contenu,moniteur,tour)
     ecran.setCursorPos(contenu.x,contenu.y)
     ecran.write(contenu.texte)
 end
-effets.texteClini.infos="texte cliniottant"
+effets.texteClini.infos="texte cliniottant"]]
 
 effets.date={}
-effets.date.parametres={{type="couleur",info="couleurT:",nom="couleur",defaut=16384},{type="couleur",info="couleurF:",nom="fond",defaut=1},{type="texte",info="forme:",nom="forme",defaut="#J-#H:#m"},{type="numeric",info="posx:",nom="x",defaut=1},{nom="y",info="posy:",type="numeric",defaut=1}}
+effets.date.parametres={{type="couleur",info="Tcolor:",nom="couleur",defaut=16384},{type="couleur",info="Bcolor:",nom="fond",defaut=1},{type="texte",info="pattern:",nom="forme",defaut="#J-#H:#m"},{type="numeric",info="Xpos:",nom="x",defaut=1},{nom="y",info="Ypos:",type="numeric",defaut=1}}
 function effets.date.dessine(_,contenu,moniteur,_)
     local temps=os.time()
     local jour=os.day()
@@ -174,10 +174,10 @@ function effets.date.dessine(_,contenu,moniteur,_)
     ecran.setCursorPos(contenu.x,contenu.y)
     ecran.write(texte)
 end
-effets.date.infos="date/heure"
+effets.date.infos="date/hour"
 
 effets.conteur={}
-effets.conteur.parametres={{type="numeric",info="posx:",nom="x",defaut=1},{nom="y",info="posy:",type="numeric",defaut=1},{type="couleur",info="couleurT:",nom="couleur",defaut=32768},{type="couleur",info="couleurF:",nom="fond",defaut=1},{type="numeric",info="depart:",nom="depart",defaut=1},{type="numeric",info="arrivee:",nom="arrivee",defaut=100},{type="numeric",info="vitesse:",nom="vitesse",defaut=1}}
+effets.conteur.parametres={{type="numeric",info="Xpos:",nom="x",defaut=1},{nom="y",info="Ypos:",type="numeric",defaut=1},{type="couleur",info="Tcolor:",nom="couleur",defaut=32768},{type="couleur",info="Bcolor:",nom="fond",defaut=1},{type="numeric",info="start:",nom="depart",defaut=1},{type="numeric",info="end:",nom="arrivee",defaut=100},{type="numeric",info="speed:",nom="vitesse",defaut=1}}
 function effets.conteur.dessine(_,contenu,moniteur,tour)
     donnees=tour*contenu.vitesse-contenu.depart+1
     if tour*contenu.vitesse<contenu.depart then
@@ -192,4 +192,4 @@ function effets.conteur.dessine(_,contenu,moniteur,tour)
     ecran.setCursorPos(contenu.x,contenu.y)
     ecran.write(donnees)
 end
-effets.conteur.infos="Conteur/Chrono"
+effets.conteur.infos="Counter/Chrono"

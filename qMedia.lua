@@ -146,7 +146,7 @@ do
             term.setBackgroundColor(colors.lightBlue)
             term.setCursorPos((x-6)/2,3)
             term.setTextColor(colors.blue)
-            term.write("Projet")
+            term.write("Projets")
             term.setCursorPos(3,4)
             term.setTextColor(colors.gray)
             term.write("Recent files:")
@@ -1179,7 +1179,7 @@ do
                                     end
                                 end
                                 if nom==nil then
-                                    nom=Champs.ChampTexte("",3,3,18,fenettre).valueInfo("nome:").visible(true)
+                                    nom=Champs.ChampTexte("",3,3,18,fenettre).valueInfo("name:").visible(true)
                                 else
                                     nom.redessine()
                                 end
