@@ -16,9 +16,9 @@ qMedia is made in French for now, but I have the project of translating it.
   * scrolling text,
   * Date and time champ (customizable)
   * Compteur
-* Ressources editor: in your project, you can import images / programs, or create it to use in each of your project
-* A launcher (optional) to have automatically the updates
-* Images transparence
+* **Ressources editor**: in your project, you can import images / programs, or create it to use in each of your project
+* **A launcher** (optional) to have automatically the updates
+* **Images transparence**
 
 ![home of qMedia](http://qos.esy.es/images/qMedia-home.jpg)
 ![Scenes list in qMedia](http://qos.esy.es/images/qMedia-scenes.jpg)
